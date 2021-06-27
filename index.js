@@ -288,4 +288,12 @@ Object.defineProperty(String.prototype, 'hashCode', {
   }
 });
 
-const server = new SnapdropServer(process.env.PORT || 3000);
+const server = new SnapdropServer(process.env.SERVER_PORT || 3000);
+
+var express = require('express')
+var serveStatic = require('serve-static')
+
+var client = express()
+
+client.use(serveStatic('client', { 'index': ['index.html', 'index.htm'] }))
+client.listen(process.env.CLIENT_PORT || 8080)
